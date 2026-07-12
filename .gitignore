@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+._*
+
+# AI 助手配置（Claude Code 等）
+.claude/
+.claude*
+
+# IDE / 编辑器
+.vscode/
+.idea/
+*.swp
+*~
+
+# Arduino 编译产物
+build/
+*.hex
+*.bin
+*.elf
+
+# 本地配置（API Key、WiFi 凭证等不应该进版本控制）
+config.md
+config.local.h
+*.secret
+*.key
+
+# Python（伴侣脚本开发）
+__pycache__/
+*.pyc
+companion/dist/
+companion/build/
+companion/*.spec
+
+# 日志
+*.log
