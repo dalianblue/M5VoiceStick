@@ -26,13 +26,13 @@ M5StickS3 语音输入终端：按住 BtnA 说话 → 上传智谱 GLM-ASR-2512 
 
 | 适配器 | 兼容性 | 备注 |
 |---|---|---|
-| **绿联 CM780** | ✅ 推荐，测试通过 | 适配范围广，首选 |
+| **绿联 CM748** | ✅ 推荐，测试通过 | 适配范围广，首选 |
 | 博通 BCM20702 等老蓝牙 4.0 | ❌ 不支持 | 虽然适配的电脑更多，但不支持本客户端 |
-| 戴尔 OptiPlex 7070 micro（迷你 PC） | ⚠️ 不工作 | 插上 CM780 后设备管理器报**代码 22** |
+| 戴尔 OptiPlex 7070 micro（迷你 PC） | ⚠️ 不工作 | 插上 CM748 后设备管理器报**代码 22** |
 | 惠普 EliteDesk 800 G6（迷你 PC） | ⚠️ 不工作 | 同上，代码 22 |
 | 稍老的台式机 | ✅ 通常没问题 | —
 
-> 迷你 PC 集成度太高，部分型号 USB/蓝牙资源冲突会报代码 22。优先选**老台式机 + 绿联 CM780** 组合。
+> 迷你 PC 集成度太高，部分型号 USB/蓝牙资源冲突会报代码 22。优先选**老台式机 + 绿联 CM748** 组合。
 
 ### 状态自检（看灯）
 
@@ -201,15 +201,15 @@ build_flags = -DCORE_DEBUG_LEVEL=0
 
 代码 22 = `CM_PROB_DISABLED`（**设备被禁用**）。戴尔 OptiPlex 7070 micro / 惠普 EliteDesk 800 G6 等迷你 PC 上常见。
 
-**关键现象**：同一台机器插 BCM20702（BT 4.0）能用，插 CM780（BT 5.x）就报代码 22 → 排除组策略锁（否则两个都禁），**真凶是与板载 BT 5.x 模块的协议/资源冲突**——Windows 检测到冲突，把后插入的 USB 适配器自动禁用。
+**关键现象**：同一台机器插 BCM20702（BT 4.0）能用，插 CM748（BT 5.x）就报代码 22 → 排除组策略锁（否则两个都禁），**真凶是与板载 BT 5.x 模块的协议/资源冲突**——Windows 检测到冲突，把后插入的 USB 适配器自动禁用。
 
 **解法**（按命中率排序）：
 
-1. **BIOS 禁用板载蓝牙**（最有效）：开机进 BIOS → 找 `Wireless`/`Bluetooth`/`Onboard BT` 选项 → 关闭 → 保存重启 → 插 CM780。戴尔 BIOS 路径：`System Configuration` → `Wireless Device`；惠普：`Advanced` → `Built-in Device Options`
-2. **设备管理器里禁用板载 BT**：找到「Intel Wireless Bluetooth」/「Realtek Bluetooth Adapter」等板载设备 → 禁用 → 只留 CM780
-3. **手动启用 CM780**：设备管理器里找带 ↓ 箭头的 CM780 → 右键「启用设备」。不行就「卸载设备」→ 拔下重插让 Windows 重装
-4. **更新驱动**：从绿联官网下 CM780 专用驱动；或在设备管理器里「浏览我的电脑以查找驱动程序」→ 从可用驱动列表试不同厂商版本（CM780 多为 CSR/Realtek 方案）
-5. **换后置 USB 口**：避开前面板端口（次要，CM780 工作电流仅 100mA，供电通常不是瓶颈）
+1. **BIOS 禁用板载蓝牙**（最有效）：开机进 BIOS → 找 `Wireless`/`Bluetooth`/`Onboard BT` 选项 → 关闭 → 保存重启 → 插 CM748。戴尔 BIOS 路径：`System Configuration` → `Wireless Device`；惠普：`Advanced` → `Built-in Device Options`
+2. **设备管理器里禁用板载 BT**：找到「Intel Wireless Bluetooth」/「Realtek Bluetooth Adapter」等板载设备 → 禁用 → 只留 CM748
+3. **手动启用 CM748**：设备管理器里找带 ↓ 箭头的 CM748 → 右键「启用设备」。不行就「卸载设备」→ 拔下重插让 Windows 重装
+4. **更新驱动**：从绿联官网下 CM748 专用驱动；或在设备管理器里「浏览我的电脑以查找驱动程序」→ 从可用驱动列表试不同厂商版本（CM748 多为 CSR/Realtek 方案）
+5. **换后置 USB 口**：避开前面板端口（次要，CM748 工作电流仅 100mA，供电通常不是瓶颈）
 
 > 实测经验：方法 1（BIOS 关板载 BT）命中率最高，迷你 PC 板载模块和 USB BT 5.x 适配器同频/同协议冲突是代码 22 的主要原因。
 
