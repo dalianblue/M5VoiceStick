@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 pip install -q -r requirements.txt pyinstaller
-pyinstaller --onefile --windowed --name VoiceStickRX \
+pyinstaller --windowed --name VoiceStickRX \
     --add-data "requirements.txt:." \
     voice_stick_rx.py
 echo "打包完成: dist/VoiceStickRX.app"
